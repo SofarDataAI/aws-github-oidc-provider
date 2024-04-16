@@ -1,5 +1,13 @@
 ## 2024-04-16
 
+### Changed
+- Updated `APP_NAME` in `.env.example` from `sodx-aws-github-oidc-provider` to `sodas-aws-github-oidc-provider`
+- Updated `OWNER` in `.env.example` from `sodx` to `sodas`
+- Updated `version` in `package-lock.json` from `0.2.0` to `0.2.1`
+- Updated `version` in `package.json` from `0.2.0` to `0.2.1
+
+## 2024-04-16
+
 ### Added
 - Imports for dotenv, Aspects, and checkEnvVariables
 - dotenv.config() to load environment variables from .env file
