@@ -41,7 +41,7 @@ const stackProps: AwsGithubOidcProviderStackProps = {
 };
 new AwsGithubOidcProviderStack(app, `AwsGithubOidcProviderStack`, {
   ...stackProps,
-  stackName: `${appName}-${deployEnvironment}-AwsGithubOidcProviderStack`,
+  stackName: `${appName}-${deployEnvironment}-${deployRegion}-AwsGithubOidcProviderStack`,
   description: `AwsGithubOidcProviderStack for ${appName} in ${deployRegion} ${deployEnvironment}.`,
 });
 
