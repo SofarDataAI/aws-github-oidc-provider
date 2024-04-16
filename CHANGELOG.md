@@ -1,6 +1,11 @@
 ## 2024-04-16
 
 ### Changed
+- Updated stack naming in `AwsGithubOidcProviderStack` in `bin/aws-github-oidc-provider.ts
+
+## 2024-04-16
+
+### Changed
 - Updated `APP_NAME` in `.env.example` from `sodx-aws-github-oidc-provider` to `sodas-aws-github-oidc-provider`
 - Updated `OWNER` in `.env.example` from `sodx` to `sodas`
 - Updated `version` in `package-lock.json` from `0.2.0` to `0.2.1`
