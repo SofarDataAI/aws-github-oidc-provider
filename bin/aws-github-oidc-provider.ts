@@ -1,21 +1,48 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
+
 import * as cdk from 'aws-cdk-lib';
+import * as dotenv from 'dotenv';
+import { Aspects } from 'aws-cdk-lib';
+import { ApplyTags } from '../utils/apply-tag';
+import { checkEnvVariables } from '../utils/check-environment-variable';
 import { AwsGithubOidcProviderStack } from '../lib/aws-github-oidc-provider-stack';
+import { AwsGithubOidcProviderStackProps } from '../lib/AwsGithubOidcProviderStackProps';
 
+dotenv.config(); // Load environment variables from .env file
 const app = new cdk.App();
-new AwsGithubOidcProviderStack(app, 'AwsGithubOidcProviderStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
+const appAspects = Aspects.of(app);
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+// check APP_NAME variable
+checkEnvVariables('APP_NAME','ENVIRONMENT','CDK_DEPLOY_REGION', 'OWNER');
 
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
+const { CDK_DEFAULT_ACCOUNT: account, CDK_DEFAULT_REGION: region } = process.env;
 
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+const deployRegion = process.env.CDK_DEPLOY_REGION!;
+const deployEnvironment = process.env.ENVIRONMENT!;
+const appName = process.env.APP_NAME!;
+const owner = process.env.OWNER!;
+
+appAspects.add(new ApplyTags({
+  environment: deployEnvironment as 'development' | 'staging' | 'production' | 'demonstration',
+  project: appName,
+  owner: owner,
+}));
+
+const stackProps: AwsGithubOidcProviderStackProps = {
+  resourcePrefix: `${appName}-${deployEnvironment}`,
+  env: {
+      region: deployRegion,
+      account,
+  },
+  deployRegion,
+  deployEnvironment,
+  appName,
+};
+new AwsGithubOidcProviderStack(app, `AwsGithubOidcProviderStack`, {
+  ...stackProps,
+  stackName: `${appName}-${deployEnvironment}-AwsGithubOidcProviderStack`,
+  description: `AwsGithubOidcProviderStack for ${appName} in ${deployRegion} ${deployEnvironment}.`,
 });
+
+app.synth();
