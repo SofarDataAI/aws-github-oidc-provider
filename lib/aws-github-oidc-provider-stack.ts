@@ -20,6 +20,7 @@ export class AwsGithubOidcProviderStack extends cdk.Stack {
     super(scope, id, props);
 
     const provider = new GithubActionsIdentityProvider(this, `${props.resourcePrefix}-GithubActionsIdentityProvider`);
+    provider.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
 
     // export provider openIdConnectProviderArn
     new cdk.CfnOutput(this, 'openIdConnectProviderArn', {
