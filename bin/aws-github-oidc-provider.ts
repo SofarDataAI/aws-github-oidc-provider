@@ -5,6 +5,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as dotenv from 'dotenv';
 import { Aspects } from 'aws-cdk-lib';
 import { ApplyTags } from '../utils/apply-tag';
+import { AwsSolutionsChecks } from 'cdk-nag';
 import { checkEnvVariables } from '../utils/check-environment-variable';
 import { AwsGithubOidcProviderStack } from '../lib/aws-github-oidc-provider-stack';
 import { AwsGithubOidcProviderStackProps } from '../lib/AwsGithubOidcProviderStackProps';
@@ -23,11 +24,15 @@ const deployEnvironment = process.env.ENVIRONMENT!;
 const appName = process.env.APP_NAME!;
 const owner = process.env.OWNER!;
 
+// apply tags to all resources
 appAspects.add(new ApplyTags({
   environment: deployEnvironment as 'development' | 'staging' | 'production' | 'demonstration',
   project: appName,
   owner: owner,
 }));
+
+// check best practices based on AWS Solutions Security Matrix
+appAspects.add(new AwsSolutionsChecks());
 
 const stackProps: AwsGithubOidcProviderStackProps = {
   resourcePrefix: `${appName}-${deployEnvironment}`,

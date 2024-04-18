@@ -1,3 +1,9 @@
+## 2024-04-18
+
+### Added
+- Added import statement for `cdk-nag` and `AwsSolutionsChecks` aspect to check best practices based on AWS Solutions Security Matrix in `bin/aws-github-oidc-provider.ts`
+- Added dependency on `cdk-nag` version 2.28.91 in `package-lock.json` and `package.json
+
 ## 2024-04-16
 
 ### Changed
