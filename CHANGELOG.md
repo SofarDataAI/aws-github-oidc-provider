@@ -1,3 +1,12 @@
+## 2024-04-20
+
+### Updated
+- Updated the versions of "@aws-sdk/client-iam", "@aws-sdk/client-sso-oidc", "aws-cdk-lib", and "cdk-nag" in the package-lock.json and package.json files.
+- Updated the version of "@aws-sdk/client-iam" from "3.554.0" to "3.556.0"
+- Updated the version of "@aws-sdk/client-sso-oidc" from "3.554.0" to "3.556.0"
+- Updated the version of "aws-cdk-lib" from "2.137.0" to "2.138.0"
+- Updated the version of "cdk-nag" from "2.28.91" to "2.28.94"
+
 ## 2024-04-18
 
 ### Added
