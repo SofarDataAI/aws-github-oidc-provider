@@ -1,6 +1,6 @@
 {
   "name": "aws-github-oidc-provider",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "bin": {
     "aws-github-oidc-provider": "bin/aws-github-oidc-provider.js"
   },
