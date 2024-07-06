@@ -1,3 +1,9 @@
+## 2024-07-06
+
+### Updated
+- Updated various dependencies including `@aws-sdk/client-iam`, `@aws-sdk/client-sso-oidc`, `@aws-sdk/middleware-logger`, `@smithy/core`, `@smithy/middleware-retry`, `@smithy/middleware-serde`, `aws-cdk-lib`, `cdk-nag`, and others to their latest versions.
+- Increased the project version to `0.2.6`.
+
 ## 2024-06-02
 
 ### Updated
