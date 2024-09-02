@@ -1,3 +1,10 @@
+## 2024-09-02
+
+### Updated
+- Updated project version from `0.2.6` to `0.2.7`.
+- Upgraded `aws-cdk` from `2.148.0` to `2.155.0`.
+- Updated various dependencies and devDependencies, including `@types/node`, `ts-jest`, `typescript`, `@aws-sdk/client-iam`, and others to their latest versions.
+
 ## 2024-07-06
 
 ### Updated
